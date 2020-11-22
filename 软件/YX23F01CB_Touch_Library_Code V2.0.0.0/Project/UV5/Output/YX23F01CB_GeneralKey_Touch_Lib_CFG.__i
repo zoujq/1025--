@@ -1,0 +1,1 @@
+"..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_CFG.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\..\Application;..\..\User\INC;..\..\Libraries;..\..\Libraries;..\..\User\INC) DEBUG OBJECTEXTEND PRINT(.\List\YX23F01CB_GeneralKey_Touch_Lib_CFG.lst) TABS (2) OBJECT(.\Output\YX23F01CB_GeneralKey_Touch_Lib_CFG.obj)

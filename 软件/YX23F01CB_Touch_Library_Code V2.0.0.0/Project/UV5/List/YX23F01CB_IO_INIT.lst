@@ -1,0 +1,75 @@
+C51 COMPILER V9.56.0.0   YX23F01CB_IO_INIT                                                 11/22/2020 10:41:35 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE YX23F01CB_IO_INIT
+OBJECT MODULE PLACED IN .\Output\YX23F01CB_IO_INIT.obj
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE ..\..\User\C\YX23F01CB_IO_INIT.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\..\Appl
+                    -ication;..\..\User\INC;..\..\Libraries;..\..\Libraries;..\..\User\INC) DEBUG OBJECTEXTEND PRINT(.\List\YX23F01CB_IO_INIT
+                    -.lst) TABS(2) OBJECT(.\Output\YX23F01CB_IO_INIT.obj)
+
+line level    source
+
+   1          
+   2          #include  "YX23F01CB.h"
+   3          #include  "YX23F01CB_IO_INIT.h"
+   4          
+   5          /****************************************************************************
+   6          * Function Name  :
+   7          * Description    :
+   8          * Input          : None
+   9          * Output         : None
+  10          * Return         : None
+  11          ****************************************************************************/
+  12          void IO_Init(void)
+  13          {
+  14   1        P0 = 0X00;
+  15   1        P0M0 = GPIO_In_AN; //
+  16   1        P0M1 = GPIO_In_AN; //
+  17   1        P0M2 = GPIO_In_AN; //
+  18   1        P0M3 = GPIO_In_AN; //
+  19   1        P0M4 = GPIO_In_AN; //
+  20   1        P0M5 = GPIO_In_AN; //
+  21   1        P0M6 = GPIO_In_AN; //
+  22   1        P0M7 = GPIO_In_AN; //
+  23   1      
+  24   1        P1M0 = GPIO_In_AN; //
+  25   1        P1M1 = GPIO_In_AN; //
+  26   1        P1M2 = GPIO_In_AN; //
+  27   1        P1M3 = GPIO_In_AN; //
+  28   1        P1M4 = GPIO_In_AN; //
+  29   1        P1M5 = GPIO_In_AN; //
+  30   1        P1M6 = GPIO_In_AN; //
+  31   1        P1M7 = GPIO_In_AN; //
+  32   1      
+  33   1        P2 = 0X00;
+  34   1        P2M0 = GPIO_In_AN; //SW_SDA
+  35   1        P2M1 = GPIO_In_AN; //
+  36   1        P2M2 = GPIO_In_AN; //SW_SCK
+  37   1        P2M3 = GPIO_In_AN; //
+  38   1        P2M4 = GPIO_In_AN; //
+  39   1        P2M5 = GPIO_In_AN; //
+  40   1        P2M6 = GPIO_In_AN; //
+  41   1        P2M7 = GPIO_In_AN; //
+  42   1      
+  43   1        P3 = 0X00;
+  44   1        P3M4 = GPIO_In_AN; //
+  45   1        P3M5 = GPIO_In_AN; //
+  46   1      }
+  47          
+  48          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    117    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V9.56.0.0   YX23F01CB_IO_INIT                                                 11/22/2020 10:41:35 PAGE 2   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

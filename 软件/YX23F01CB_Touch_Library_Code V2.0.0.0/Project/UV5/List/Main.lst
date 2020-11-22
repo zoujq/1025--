@@ -1,0 +1,71 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              11/22/2020 10:41:34 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Output\Main.obj
+COMPILER INVOKED BY: F:\Keil\C51\BIN\C51.EXE ..\..\User\Main.c OPTIMIZE(8,SPEED) BROWSE INCDIR(..\..\Application;..\..\U
+                    -ser\INC;..\..\Libraries;..\..\Libraries;..\..\User\INC) DEBUG OBJECTEXTEND PRINT(.\List\Main.lst) TABS(2) OBJECT(.\Outpu
+                    -t\Main.obj)
+
+line level    source
+
+   1          
+   2          //================================================================================
+   3          #define  ALLOCATE_EXTERN
+   4          #include "YX23F01CB.h"
+   5          #include "YX23F01CB_SYS.h"
+   6          #include "YX23F01CB_IO_INIT.h"
+   7          #include "YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib.h"
+   8          #include "YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Auxiliary.h"
+   9          #include "YX23F01CB_TouchUartDebug_Lib_V2.00\YX23F01CB_TouchUartDebug_Lib_CFG.h"
+  10          #include "YX23F01CB_TouchUartDebug_Lib_V2.00\YX23F01CB_TouchUartDebug_Lib.h"
+  11          #include "YX23F01CB_PORT_MAP.h"
+  12          //================================================================================
+  13          void main()
+  14          {
+  15   1        SystemInit();           //时钟初始化函数(默认Fosc=Fcpu=16M)
+  16   1        FREQ_CLK = 0x10;
+  17   1        IO_Init();
+  18   1      
+  19   1        EA = 1;
+  20   1        CTK_Init();             
+  21   1      #if TouchUartDebugLib_SW
+  22   1        CTK_TouchUartDebug_Init();      //触摸串口调试初始化
+  23   1      #endif 
+  24   1        
+  25   1        while(1)
+  26   1        {
+  27   2          if(OneCycleScanDone)
+  28   2          {
+  29   3            Touch_Signal_Handle();
+  30   3            OneCycleScanDone = 0;
+  31   3          }
+  32   2      
+  33   2          
+  34   2          if(TouchKeyFlag)
+  35   2          {
+  36   3            //TouchKeyFlag 为触摸输出标志寄存器，具体请查看YX23F01CB_GeneralKey_Touch_Lib.h
+  37   3            
+  38   3          }
+  39   2            
+  40   2      
+  41   2        }
+  42   1      }
+  43          
+  44          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     38    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.56.0.0   MAIN                                                              11/22/2020 10:41:34 PAGE 2   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
