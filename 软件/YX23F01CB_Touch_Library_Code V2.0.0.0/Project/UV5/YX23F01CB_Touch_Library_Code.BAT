@@ -13,5 +13,5 @@ SET CPU_XTAL=0x01E84800
 "F:\Keil\C51\BIN\C51.EXE" @".\Output\YX23F01CB_ISR.__i"
 "F:\Keil\C51\BIN\C51.EXE" @".\Output\YX23F01CB_PORT_MAP.__i"
 "F:\Keil\C51\BIN\C51.EXE" @".\Output\YX23F01CB_SYS.__i"
-"F:\Keil\C51\BIN\BL51.EXE" @".\Output\YX23F01CB_Touch_Library_Code.lnp"
-"F:\Keil\C51\BIN\OH51.EXE" ".\Output\YX23F01CB_Touch_Library_Code" 
+"F:\Keil\C51\BIN\BL51.EXE" @".\Output\1025_¹óÒ«_YX23F01CB24_V1.lnp"
+"F:\Keil\C51\BIN\OH51.EXE" ".\Output\1025_¹óÒ«_YX23F01CB24_V1.0" 

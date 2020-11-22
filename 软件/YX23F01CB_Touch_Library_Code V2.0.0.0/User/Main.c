@@ -23,7 +23,8 @@ char g_work_mode=0;
 char g_feng_su=0;
 char g_yao_tou=0;
 char g_ding_shi=0;
-u16 g_ding_shi_timer=0;
+u16  g_ding_shi_timer=0;
+char g_xi_ping=0;
 
 //=======================================delay============================================================
 void Delay_50us(unsigned int n)	   
@@ -153,10 +154,10 @@ void display(char c,char b)
 			DISPLAY_A=1;	DISPLAY_B=0;	DISPLAY_C=1;	DISPLAY_D=1;	DISPLAY_E=1;	DISPLAY_F=1;	DISPLAY_G=1;
 			break;
 		case 7:
-			DISPLAY_A=1;	DISPLAY_B=1;	DISPLAY_C=1;	DISPLAY_D=1;	DISPLAY_E=0;	DISPLAY_F=0;	DISPLAY_G=0;
+			DISPLAY_A=1;	DISPLAY_B=1;	DISPLAY_C=1;	DISPLAY_D=0;	DISPLAY_E=0;	DISPLAY_F=0;	DISPLAY_G=0;
 			break;
 		case 8:
-			DISPLAY_A=1;	DISPLAY_B=1;	DISPLAY_C=1;	DISPLAY_D=1;	DISPLAY_E=1;	DISPLAY_F=1;	DISPLAY_G=0;
+			DISPLAY_A=1;	DISPLAY_B=1;	DISPLAY_C=1;	DISPLAY_D=1;	DISPLAY_E=1;	DISPLAY_F=1;	DISPLAY_G=1;
 			break;
 		case 9:
 			DISPLAY_A=1;	DISPLAY_B=1;	DISPLAY_C=1;	DISPLAY_D=1;	DISPLAY_E=0;	DISPLAY_F=1;	DISPLAY_G=1;
@@ -214,20 +215,28 @@ void display(char c,char b)
 void display_flush()
 {
 	static char tt=0;
-	if(tt==1)
+	if(g_xi_ping==0)
 	{
-		display(g_shu_ma_guan1,1);
+		if(tt==1)
+		{
+			display(g_shu_ma_guan1,1);
+		}
+		else if(tt==2)
+		{
+			display(g_shu_ma_guan2,2);
+		}
+		else if(tt==3)
+		{
+			display('X',3);
+			tt=0;
+		}
+		tt++;
 	}
-	else if(tt==2)
+	else
 	{
-		display(g_shu_ma_guan2,2);
+		display_close();
 	}
-	else if(tt==3)
-	{
-		display('X',3);
-		tt=0;
-	}
-	tt++;
+	
 
 }
 //===================================================================================================
@@ -267,7 +276,7 @@ void touch_key_check()
 					g_work_mode=1;
 					g_ding_shi=0;
 					g_feng_su=1;
-					g_yao_tou=0;
+					g_yao_tou=0;					
 				}
 				else
 				{
@@ -275,6 +284,7 @@ void touch_key_check()
 					g_ding_shi=0;
 					g_feng_su=0;
 					g_yao_tou=0;
+					g_xi_ping=0;
 				}
 
 			}
@@ -309,7 +319,7 @@ void touch_key_check()
 				}
 				else if(TouchKeyFlag & 0x0100L)
 				{
-					if(g_ding_shi<6)
+					if(g_ding_shi<9)
 					{
 						g_ding_shi++;
 					}
@@ -454,10 +464,10 @@ void nec_decode()
 		nec_index=0;
 		nec_chu_li();	
 		
-		// putchar(nec_data[0]);
-		// putchar(nec_data[1]);
-		// putchar(nec_data[2]);
-		// putchar(nec_data[3]);
+		putchar(nec_data[0]);
+		putchar(nec_data[1]);
+		putchar(nec_data[2]);
+		putchar(nec_data[3]);
 		
 		nec_data[0]=0;
 		nec_data[1]=0;
@@ -489,6 +499,7 @@ void nec_chu_li()
 				g_ding_shi=0;
 				g_feng_su=0;
 				g_yao_tou=0;
+				g_xi_ping=0;
 			}
 
 		}
@@ -523,7 +534,7 @@ void nec_chu_li()
 			}
 			else if(nec_data[2]==0x16)
 			{
-				if(g_ding_shi<6)
+				if(g_ding_shi<9)
 				{
 					g_ding_shi++;
 				}
@@ -533,6 +544,19 @@ void nec_chu_li()
 				}
 				g_ding_shi_timer=g_ding_shi*60;
 			}
+			
+		}
+		if(nec_data[2]==0x0D)
+		{
+			if(g_xi_ping==0)
+			{
+				g_xi_ping=1;
+			}
+			else
+			{
+				g_xi_ping=0;
+			}
+			
 		}
 	}
 	
