@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   YX23F01CB_ISR                                                     11/22/2020 10:41:36 PAGE 1   
+C51 COMPILER V9.56.0.0   YX23F01CB_ISR                                                     11/22/2020 21:13:35 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE YX23F01CB_ISR
@@ -34,10 +34,10 @@ line level    source
   23          * Output         : None
   24          * Return         : None
   25          ****************************************************************************/
-  26          void ISR_Timer0(void)     interrupt TIMER0_VECTOR
-  27          {
-  28   1        while(1);
-  29   1      }
+  26          //void ISR_Timer0(void)     interrupt TIMER0_VECTOR
+  27          //{
+  28          //  while(1);
+  29          //}
   30          
   31          /****************************************************************************
   32          * Function Name  : ISR_INT1
@@ -62,7 +62,7 @@ line level    source
   51          {
   52   1        while(1);
   53   1      }
-C51 COMPILER V9.56.0.0   YX23F01CB_ISR                                                     11/22/2020 10:41:36 PAGE 2   
+C51 COMPILER V9.56.0.0   YX23F01CB_ISR                                                     11/22/2020 21:13:35 PAGE 2   
 
   54          
   55          /****************************************************************************
@@ -126,7 +126,7 @@ line level    source
  113   1      }
  114          
  115          /****************************************************************************
-C51 COMPILER V9.56.0.0   YX23F01CB_ISR                                                     11/22/2020 10:41:36 PAGE 3   
+C51 COMPILER V9.56.0.0   YX23F01CB_ISR                                                     11/22/2020 21:13:35 PAGE 3   
 
  116          * Function Name  : ISR_PWM
  117          * Description    : PWM interrupt request
@@ -171,17 +171,17 @@ line level    source
  156          * Output         : None
  157          * Return         : None
  158          ****************************************************************************/
- 159          void ISR_INT16_17(void)  interrupt INT16_17_VECTOR
- 160          {
- 161   1        while(1);
- 162   1      }
+ 159          //void ISR_INT16_17(void)  interrupt INT16_17_VECTOR
+ 160          //{
+ 161          //  while(1);
+ 162          //}
  163          
  164          /*********************************END OF FILE************************************/
  165          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =     83    ----
+   CODE SIZE        =     79    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

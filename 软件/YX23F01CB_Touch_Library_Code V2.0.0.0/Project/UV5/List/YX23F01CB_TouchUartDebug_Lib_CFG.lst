@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   YX23F01CB_TOUCHUARTDEBUG_LIB_CFG                                  11/22/2020 10:41:35 PAGE 1   
+C51 COMPILER V9.56.0.0   YX23F01CB_TOUCHUARTDEBUG_LIB_CFG                                  11/22/2020 21:13:35 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE YX23F01CB_TOUCHUARTDEBUG_LIB_CFG
@@ -25,7 +25,7 @@ line level    source
 *** MESSAGE C286 IN LINE 9 OF ..\..\Libraries\YX23F01CB_TouchUartDebug_Lib_V2.00\YX23F01CB_TouchUartDebug_Lib_CFG.c: ´¥Ã
              -þ´®¿ÚÊ¹ÓÃUART1Ïà¹Ø×ÊÔ´£¬²¨ÌØÂÊÓÉT4²úÉú£¬Èô´®¿Úµ÷ÊÔÕ¼ÓÃµÄ×ÊÔ´ÓëÓÃ»§ÆäËü¹¦ÄÜÓÐ³åÍ»£¬Çë×¢Òâ×öÏà¹Ø±ØÒªµÄµ÷Õû
   10          #include "YX23F01CB_TouchUartDebug_Lib_V2.00\YX23F01CB_TouchUartDebug_Lib_Build_Message.h"
-*** MESSAGE C286 IN LINE 595 OF ..\..\Libraries\YX23F01CB_TouchUartDebug_Lib_V2.00\YX23F01CB_TouchUartDebug_Lib_Build_Me
+*** MESSAGE C286 IN LINE 437 OF ..\..\Libraries\YX23F01CB_TouchUartDebug_Lib_V2.00\YX23F01CB_TouchUartDebug_Lib_Build_Me
              -ssage.h: Touch_TXD_PIN is P2_0
   11          #else
               #pragma message "´¥Ãþ´®¿Úµ÷ÊÔ¹¦ÄÜ£ºÎ´¿ªÆô"
@@ -62,7 +62,7 @@ line level    source
   42          void CTK_Debug_Mode_Uart_SendChar(u8 send_data)
   43          {
   44   1        SBUF = send_data;
-C51 COMPILER V9.56.0.0   YX23F01CB_TOUCHUARTDEBUG_LIB_CFG                                  11/22/2020 10:41:35 PAGE 2   
+C51 COMPILER V9.56.0.0   YX23F01CB_TOUCHUARTDEBUG_LIB_CFG                                  11/22/2020 21:13:35 PAGE 2   
 
   45   1      
   46   1        while(!TI);

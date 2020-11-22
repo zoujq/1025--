@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 10:41:35 PAGE 1   
+C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 21:13:35 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE YX23F01CB_GENERALKEY_TOUCH_AUXILIARY
@@ -62,7 +62,7 @@ line level    source
   46            * @说明   多按键处理冒泡排序
   47            * @参数 fi_ArrDataOne_a ：排序数组1
   48            *     fuc_ArrDataTwo_a ：排序数组2
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 10:41:35 PAGE 2   
+C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 21:13:35 PAGE 2   
 
   49            *     fuc_Len：排序数组长度
   50            * @返回值 无
@@ -126,7 +126,7 @@ line level    source
  108            * @返回值 无
  109            * @注   无
  110          ***************************************************************************************/
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 10:41:35 PAGE 3   
+C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 21:13:35 PAGE 3   
 
  111          void TouchMultibuttonHandle(void)
  112          {
@@ -190,7 +190,7 @@ line level    source
                     TouchKeyFlag |= (0x01L<<fc_ChannelLocationSecond);    
                   }
                   else if(((CODE_INTERNAL_INDEX[fc_ChannelLocationFirst] == nuc_CombinationKeyC_a[0])&&(CODE_INTERNAL_INDE
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 10:41:35 PAGE 4   
+C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 21:13:35 PAGE 4   
 
              -X[fc_ChannelLocationSecond] == nuc_CombinationKeyC_a[1]))\
                           ||((CODE_INTERNAL_INDEX[fc_ChannelLocationFirst] == nuc_CombinationKeyC_a[1])&&(CODE_INTERNAL_IN
@@ -254,7 +254,7 @@ line level    source
  217            * @返回值 无
  218            * @注   无
  219          ***************************************************************************************/
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 10:41:35 PAGE 5   
+C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_AUXILIARY                              11/22/2020 21:13:35 PAGE 5   
 
  220          void TouchRawDataFilter(void)
  221          {

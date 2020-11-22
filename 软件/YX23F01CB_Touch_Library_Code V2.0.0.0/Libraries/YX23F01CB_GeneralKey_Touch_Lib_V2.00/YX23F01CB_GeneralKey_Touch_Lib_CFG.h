@@ -8,7 +8,7 @@
 //		[2 ----> YX23F01CB	SOP28]
 //		[3 ----> YX23F01CB	SOP16]
 
-#define HCTouchLib_IC_BODY                    			2
+#define HCTouchLib_IC_BODY                    			1
 /************************************************************************************************************/
 
 
@@ -34,11 +34,11 @@
 /*********************************************设置需要检测的通道*********************************************/
 //      设置需要检测的通道标志 ------>[0: 不检测；1: 允许检测]
 
-//		YX23F01CB-SOP28 			│TK15│TK14│TK13│TK12│TK11│TK10│TK9 │TK8 │TK7 │TK6 │TK5 │TK4 │TK3 │TK2 │TK1 │TK0 │
-//		YX23F01CB-SOP24 			│ NC │ NC │ NC │ NC │TK15│TK14│TK13│TK12│TK11│TK10│TK9 │TK7 │TK3 │TK2 │TK1 │TK0 │
-//		YX23F01CB-SOP20/DIP20		│ NC │ NC │ NC │ NC │ NC │ NC │TK15│TK14│TK13│TK12│TK11│TK10│TK9 │TK7 │TK3 │TK2 │
-//		YX23F01CB-SOP16				│ NC │ NC │ NC │ NC │ NC │ NC │ NC │ NC │ NC │TK15│TK14│TK13│TK12│TK11│TK7 │TK2 │
-#define HCTouchLib_TK_CH_MASK  TKBIN(  1 ,  1 ,  1 ,  1 ,  1 ,  1 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 )
+//            YX23F01CB-SOP28 			│TK15│TK14│TK13│TK12│TK11│TK10│TK9 │TK8 │TK7 │TK6 │TK5 │TK4 │TK3 │TK2 │TK1 │TK0 │
+//		        YX23F01CB-SOP24 			│ NC │ NC │ NC │ NC │TK15│TK14│TK13│TK12│TK11│TK10│TK9 │TK7 │TK3 │TK2 │TK1 │TK0 │
+//		        YX23F01CB-SOP20/DIP20	│ NC │ NC │ NC │ NC │ NC │ NC │TK15│TK14│TK13│TK12│TK11│TK10│TK9 │TK7 │TK3 │TK2 │
+//		        YX23F01CB-SOP16				│ NC │ NC │ NC │ NC │ NC │ NC │ NC │ NC │ NC │TK15│TK14│TK13│TK12│TK11│TK7 │TK2 │
+#define HCTouchLib_TK_CH_MASK  TKBIN(  0 ,  0 ,  0 ,  0 ,  1 ,  1 ,  1 ,  1 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 )
 
 //      设置短按按键及长按按键 ------>[0: 短按按键  1: 长按按键]
 //		使用注意：本配置必须配合长/短按键生效最长时间使用

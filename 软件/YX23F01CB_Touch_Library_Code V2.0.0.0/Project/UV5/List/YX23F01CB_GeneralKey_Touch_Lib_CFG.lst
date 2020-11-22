@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_LIB_CFG                                11/22/2020 10:41:35 PAGE 1   
+C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_LIB_CFG                                11/22/2020 21:13:35 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE YX23F01CB_GENERALKEY_TOUCH_LIB_CFG
@@ -46,38 +46,34 @@ line level    source
               uc8 CODE_INTERNAL_INDEX[TK_CH_MAX] = {2, 3, 7, 9, 10, 11, 12, 13, 14, 15};
               
               #elif (HCTouchLib_IC_BODY == IC_BODY_SOP24)
-              #pragma message "IC Body: YX23F01CB-SOP24"
-              #define TK_CH_MAX     12
-              uc8 CODE_INTERNAL_INDEX[TK_CH_MAX] = {0, 1, 2, 3, 7, 9, 10, 11, 12, 13, 14, 15};
+  37          #pragma message "IC Body: YX23F01CB-SOP24"
+*** MESSAGE C286 IN LINE 37 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_CFG.c
+             -: IC Body: YX23F01CB-SOP24
+  38          #define TK_CH_MAX     12
+  39          uc8 CODE_INTERNAL_INDEX[TK_CH_MAX] = {0, 1, 2, 3, 7, 9, 10, 11, 12, 13, 14, 15};
+  40          
+  41          #elif (HCTouchLib_IC_BODY == IC_BODY_SOP28)
+              #pragma message "IC Body: YX23F01CB-SOP28"
+              #define TK_CH_MAX     16
+              uc8 CODE_INTERNAL_INDEX[TK_CH_MAX] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
               
-              #elif (HCTouchLib_IC_BODY == IC_BODY_SOP28)
-  42          #pragma message "IC Body: YX23F01CB-SOP28"
-*** MESSAGE C286 IN LINE 42 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_CFG.c
-             -: IC Body: YX23F01CB-SOP28
-  43          #define TK_CH_MAX     16
-  44          uc8 CODE_INTERNAL_INDEX[TK_CH_MAX] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-  45          
-  46          #else
+              #else
               #define TK_CH_MAX     1
               uc8 CODE_INTERNAL_INDEX[TK_CH_MAX] = {0};
               #error "No IC Body,Please reconfigure HCTouchLib_IC_BODY"
               #endif
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_LIB_CFG                                11/22/2020 10:41:35 PAGE 2   
+C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_LIB_CFG                                11/22/2020 21:13:35 PAGE 2   
 
   51          
   52          //===================================================================================================
   53          #include "YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Build_Message.h"
-*** MESSAGE C286 IN LINE 192 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
-             -d_Message.h: TK10£ºEnable
-*** MESSAGE C286 IN LINE 195 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
-             -d_Message.h: TK11£ºEnable
-*** MESSAGE C286 IN LINE 198 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
+*** MESSAGE C286 IN LINE 135 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
              -d_Message.h: TK12£ºEnable
-*** MESSAGE C286 IN LINE 201 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
+*** MESSAGE C286 IN LINE 138 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
              -d_Message.h: TK13£ºEnable
-*** MESSAGE C286 IN LINE 204 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
+*** MESSAGE C286 IN LINE 141 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
              -d_Message.h: TK14£ºEnable
-*** MESSAGE C286 IN LINE 207 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
+*** MESSAGE C286 IN LINE 144 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
              -d_Message.h: TK15£ºEnable
 *** MESSAGE C286 IN LINE 218 OF ..\..\Libraries\YX23F01CB_GeneralKey_Touch_Lib_V2.00\YX23F01CB_GeneralKey_Touch_Lib_Buil
              -d_Message.h: CTK²ÉÑùÆµÂÊ£ºFosc/2
@@ -126,12 +122,12 @@ line level    source
              -L)+(HCTouchLib_TK_CH_MASK>>11 & 0x01L)+\
   66           (HCTouchLib_TK_CH_MASK>>12 & 0x01L)+(HCTouchLib_TK_CH_MASK>>13 & 0x01L)+(HCTouchLib_TK_CH_MASK>>14 & 0x01
              -L)+(HCTouchLib_TK_CH_MASK>>15 & 0x01L))
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_LIB_CFG                                11/22/2020 10:41:35 PAGE 3   
-
   67          
   68          //===================================================================================================
   69          uc16  CODE_TK_CH_MASK                 = HCTouchLib_TK_CH_MASK;
   70          uc16  CODE_TK_LONGKEY                 = HCTouchLib_TK_LONGKEY;
+C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_LIB_CFG                                11/22/2020 21:13:35 PAGE 3   
+
   71          uc8   CODE_CHANNEL_CALIBRATE_SW       = 0;
   72          uc8   CODE_CALIBRATE_DEFLECTED_AREA   = 20;
   73          uc16  CODE_CALIBRATE_TARGET_LINE      = 0;
@@ -183,15 +179,13 @@ line level    source
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =   ----    ----
-   CONSTANT SIZE    =    109    ----
-   XDATA SIZE       =    154    ----
+   CONSTANT SIZE    =    105    ----
+   XDATA SIZE       =    108    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
-
-C51 COMPILER V9.56.0.0   YX23F01CB_GENERALKEY_TOUCH_LIB_CFG                                11/22/2020 10:41:35 PAGE 4   
 
 
 C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
