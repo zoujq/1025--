@@ -25,7 +25,8 @@ char g_yao_tou=0;
 char g_ding_shi=0;
 u16  g_ding_shi_timer=0;
 char g_xi_ping=0;
-
+u16 op_over_time=0;
+char op_type=0;
 //=======================================delay============================================================
 void Delay_50us(unsigned int n)	   
 {
@@ -165,8 +166,8 @@ void display(char c,char b)
 		case 'H':
 			DISPLAY_A=0;	DISPLAY_B=1;	DISPLAY_C=1;	DISPLAY_D=0;	DISPLAY_E=1;	DISPLAY_F=1;	DISPLAY_G=1;
 			break;
-		case 'F':
-			DISPLAY_A=1;	DISPLAY_B=0;	DISPLAY_C=0;	DISPLAY_D=0;	DISPLAY_E=1;	DISPLAY_F=1;	DISPLAY_G=1;
+		case 'P':
+			DISPLAY_A=1;	DISPLAY_B=1;	DISPLAY_C=0;	DISPLAY_D=0;	DISPLAY_E=1;	DISPLAY_F=1;	DISPLAY_G=1;
 			break;
 		default:
 			DISPLAY_A=0;	DISPLAY_B=0;	DISPLAY_C=0;	DISPLAY_D=0;	DISPLAY_E=0;	DISPLAY_F=0;	DISPLAY_G=0;
@@ -276,7 +277,8 @@ void touch_key_check()
 					g_work_mode=1;
 					g_ding_shi=0;
 					g_feng_su=1;
-					g_yao_tou=0;					
+					g_yao_tou=0;	
+					
 				}
 				else
 				{
@@ -293,6 +295,8 @@ void touch_key_check()
 				buzzer();
 				if(TouchKeyFlag & 0x0400L)
 				{
+					op_over_time=0;
+					op_type=0;
 					if(g_feng_su==1)
 					{
 						g_feng_su=2;
@@ -319,15 +323,18 @@ void touch_key_check()
 				}
 				else if(TouchKeyFlag & 0x0100L)
 				{
+					op_over_time=0;
 					if(g_ding_shi<9)
 					{
 						g_ding_shi++;
+						op_type=1;
 					}
 					else
 					{
 						g_ding_shi=0;
+						op_type=0;
 					}
-					g_ding_shi_timer=g_ding_shi*60;
+					g_ding_shi_timer=g_ding_shi*60;					
 				}
 			}
 		}
@@ -469,17 +476,21 @@ void nec_decode()
 		putchar(nec_data[2]);
 		putchar(nec_data[3]);
 		
-		nec_data[0]=0;
-		nec_data[1]=0;
-		nec_data[2]=0;
-		nec_data[3]=0;
+		{
+			int i=0;
+			for(i=0;i<33;i++)
+			{
+				nec_buff[i]=0;
+			}
+			
+		}
 	}
 }
 void nec_chu_li()
 {
 	if(nec_data[0]==0 && nec_data[1]==0xFF)
 	{
-		if(nec_doing<10000)
+		if(nec_doing<3000)
 		{
 			return;
 		}
@@ -508,6 +519,8 @@ void nec_chu_li()
 			buzzer();
 			if(nec_data[2]==0x44)
 			{
+				op_over_time=0;
+				op_type=0;
 				if(g_feng_su==1)
 				{
 					g_feng_su=2;
@@ -534,13 +547,16 @@ void nec_chu_li()
 			}
 			else if(nec_data[2]==0x16)
 			{
+				op_over_time=0;
 				if(g_ding_shi<9)
 				{
 					g_ding_shi++;
+					op_type=1;
 				}
 				else
 				{
 					g_ding_shi=0;
+					op_type=0;
 				}
 				g_ding_shi_timer=g_ding_shi*60;
 			}
@@ -615,22 +631,42 @@ void work_check()
 			FAN_DW2=0;
 			FAN_DW3=1;
 		}
-
-		if(g_ding_shi>1)
+		if(op_over_time<200)
 		{
-			g_shu_ma_guan1=g_ding_shi;
-			g_shu_ma_guan2='H';
+			op_over_time++;
+			if(op_type==0)
+			{
+				g_shu_ma_guan1='P';
+				g_shu_ma_guan2=g_feng_su;
+			}
+			else
+			{
+				if(g_ding_shi>=1)
+				{
+					g_shu_ma_guan1=g_ding_shi;
+					g_shu_ma_guan2='H';
+				}
+				else
+				{
+					g_shu_ma_guan1='P';
+					g_shu_ma_guan2=g_feng_su;
+				}
+			}
 		}
-		else if(g_ding_shi==1)
-		{
-			g_shu_ma_guan1=g_ding_shi_timer/10;
-			g_shu_ma_guan2=g_ding_shi_timer%10;
+		else{
+			if(g_ding_shi>=1)
+			{
+				g_shu_ma_guan1=g_ding_shi;
+				g_shu_ma_guan2='H';
+			}
+			else
+			{
+				g_shu_ma_guan1='P';
+				g_shu_ma_guan2=g_feng_su;
+			}
+		
 		}
-		else
-		{
-			g_shu_ma_guan1=g_feng_su;
-			g_shu_ma_guan2='F';
-		}
+		
 
 	}
 	else

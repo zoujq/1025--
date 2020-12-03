@@ -1,4 +1,4 @@
-C51 COMPILER V9.56.0.0   YX23F01CB_TOUCHUARTDEBUG_LIB_CFG                                  11/22/2020 21:53:34 PAGE 1   
+C51 COMPILER V9.56.0.0   YX23F01CB_TOUCHUARTDEBUG_LIB_CFG                                  12/03/2020 08:45:13 PAGE 1   
 
 
 C51 COMPILER V9.56.0.0, COMPILATION OF MODULE YX23F01CB_TOUCHUARTDEBUG_LIB_CFG
@@ -62,7 +62,7 @@ line level    source
   42          void CTK_Debug_Mode_Uart_SendChar(u8 send_data)
   43          {
   44   1        SBUF = send_data;
-C51 COMPILER V9.56.0.0   YX23F01CB_TOUCHUARTDEBUG_LIB_CFG                                  11/22/2020 21:53:34 PAGE 2   
+C51 COMPILER V9.56.0.0   YX23F01CB_TOUCHUARTDEBUG_LIB_CFG                                  12/03/2020 08:45:13 PAGE 2   
 
   45   1      
   46   1        while(!TI);
