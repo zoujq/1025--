@@ -1,1 +1,0 @@
-"..\..\User\C\YX23F01CB_SYS.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\..\Application;..\..\User\INC;..\..\Libraries;..\..\Libraries;..\..\User\INC) DEBUG OBJECTEXTEND PRINT(.\List\YX23F01CB_SYS.lst) TABS (2) OBJECT(.\Output\YX23F01CB_SYS.obj)
