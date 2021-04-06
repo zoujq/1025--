@@ -20,6 +20,7 @@ char g_shu_ma_guan2=0;
 char g_touch_led1=0;
 char g_touch_led2=0;
 char g_touch_led3=0;
+char g_touch_led4=0;
 //work status
 char g_work_mode=0;
 char g_feng_su=0;
@@ -27,6 +28,7 @@ char g_yao_tou=0;
 char g_ding_shi=0;
 u16  g_ding_shi_timer=0;
 char g_xi_ping=0;
+char g_shang_xia_yao_tou=0;
 u16 op_over_time=0;
 char op_type=0;
 //=======================================delay============================================================
@@ -112,7 +114,15 @@ void init_display()
 	DISPLAY_COM2=1;
 	TOUCH_LED_COM=1;
 }
-
+void display_all()
+{
+	g_shu_ma_guan1=8;
+	g_shu_ma_guan2=8;
+	g_touch_led1=1;
+	g_touch_led2=1;
+	g_touch_led3=1;
+	g_touch_led4=1;
+}
 void display_close()
 {
 	DISPLAY_A=0;
@@ -171,6 +181,9 @@ void display(char c,char b)
 		case 'P':
 			DISPLAY_A=1;	DISPLAY_B=1;	DISPLAY_C=0;	DISPLAY_D=0;	DISPLAY_E=1;	DISPLAY_F=1;	DISPLAY_G=1;
 			break;
+		case '-':
+			DISPLAY_A=0;	DISPLAY_B=0;	DISPLAY_C=0;	DISPLAY_D=0;	DISPLAY_E=0;	DISPLAY_F=0;	DISPLAY_G=1;
+			break;
 		default:
 			DISPLAY_A=0;	DISPLAY_B=0;	DISPLAY_C=0;	DISPLAY_D=0;	DISPLAY_E=0;	DISPLAY_F=0;	DISPLAY_G=0;
 			break;
@@ -197,18 +210,12 @@ void display(char c,char b)
 		DISPLAY_E=0;	
 		DISPLAY_F=0;	
 		DISPLAY_G=0;
-		if(g_touch_led1==1)
-		{
-			DISPLAY_B=1;
-		}
-		if(g_touch_led2==1)
-		{
-			DISPLAY_C=1;
-		}
-		if(g_touch_led3==1)
-		{
-			DISPLAY_D=1;
-		}
+
+		DISPLAY_E=g_touch_led1;
+		DISPLAY_B=g_touch_led2;
+		DISPLAY_C=g_touch_led3;
+		DISPLAY_D=g_touch_led4;
+
 		DISPLAY_COM1=1;
 		DISPLAY_COM2=1;
 		TOUCH_LED_COM=0;
@@ -273,7 +280,7 @@ void  buzzer(char type)
 		PWM3P = 0x20;						//PWM周期为0xFF
 		PWM3D = 0x10;						//PWM占空比设置
 		PWM3C = 0x97; 						//使能PWM3，关闭中断，允许输出，时钟4分频
-		t0=50;
+		t0=30;
 	}
 	if(t0>0)
 	{	
@@ -415,10 +422,10 @@ void nec_decode()
 		nec_index=0;
 		nec_chu_li();	
 		
-//		putchar(nec_data[0]);
-//		putchar(nec_data[1]);
-//		putchar(nec_data[2]);
-//		putchar(nec_data[3]);
+		// putchar(nec_data[0]);
+		// putchar(nec_data[1]);
+		// putchar(nec_data[2]);
+		// putchar(nec_data[3]);
 		
 		{
 			int i=0;
@@ -434,7 +441,7 @@ void nec_chu_li()
 {
 	if(nec_data[0]==0 && nec_data[1]==0xFF)
 	{
-		if(nec_doing<3000)
+		if(nec_doing<1000)
 		{
 			return;
 		}
@@ -447,6 +454,7 @@ void nec_chu_li()
 				g_ding_shi=0;
 				g_feng_su=1;
 				g_yao_tou=0;
+				g_shang_xia_yao_tou=0;
 			}
 			else
 			{
@@ -455,6 +463,7 @@ void nec_chu_li()
 				g_feng_su=0;
 				g_yao_tou=0;
 				g_xi_ping=0;
+				g_shang_xia_yao_tou=0;
 			}
 
 		}
@@ -489,6 +498,17 @@ void nec_chu_li()
 					g_yao_tou=0;
 				}
 			}
+			else if(nec_data[2]==0x0D)
+			{
+				if(g_shang_xia_yao_tou==0)
+				{
+					g_shang_xia_yao_tou=1;
+				}
+				else
+				{
+					g_shang_xia_yao_tou=0;
+				}
+			}
 			else if(nec_data[2]==0x16)
 			{
 				op_over_time=0;
@@ -506,8 +526,9 @@ void nec_chu_li()
 			}
 			
 		}
-		if(nec_data[2]==0x0D)
+		if(nec_data[2]==0x15)
 		{
+			buzzer(1);
 			if(g_xi_ping==0)
 			{
 				g_xi_ping=1;
@@ -524,12 +545,14 @@ void nec_chu_li()
 }
 //===============================================================================
 #define FAN_YAO_TOU P0_7
+#define FAN_SHNAG_XIA_YAO_TOU P0_3
 #define FAN_DW1 P1_3
 #define FAN_DW2 P1_2
 #define FAN_DW3 P1_1
 void init_work()
 {
 	P0M7=GPIO_Out_PP;
+	P0M3=GPIO_Out_PP;
 	P1M3=GPIO_Out_PP;
 	P1M2=GPIO_Out_PP;
 	P1M1=GPIO_Out_PP;
@@ -539,24 +562,39 @@ void work_check()
 	if(g_work_mode==1)
 	{
 		g_touch_led1=1;
-		if(g_yao_tou)
+
+		if(g_ding_shi_timer>0)
 		{
 			g_touch_led2=1;
-			FAN_YAO_TOU=1;
 		}
 		else
 		{
 			g_touch_led2=0;
-			FAN_YAO_TOU=0;
 		}
-		if(g_ding_shi_timer>0)
+
+		if(g_yao_tou)
 		{
 			g_touch_led3=1;
+			FAN_YAO_TOU=1;
 		}
 		else
 		{
 			g_touch_led3=0;
+			FAN_YAO_TOU=0;
 		}
+		if(g_shang_xia_yao_tou)
+		{
+			g_touch_led4=1;
+			FAN_SHNAG_XIA_YAO_TOU=1;
+		}
+		else
+		{
+			g_touch_led4=0;
+			FAN_SHNAG_XIA_YAO_TOU=0;
+		}
+
+		
+
 		if(g_feng_su==1)
 		{
 			FAN_DW1=1;
@@ -597,7 +635,8 @@ void work_check()
 				}
 			}
 		}
-		else{
+		else
+		{
 			if(g_ding_shi>=1)
 			{
 				g_shu_ma_guan1=g_ding_shi;
@@ -615,15 +654,23 @@ void work_check()
 	}
 	else
 	{
+		FAN_DW1=0;
+		FAN_DW2=0;
+		FAN_DW3=0;		
+		FAN_YAO_TOU=0;
+		FAN_SHNAG_XIA_YAO_TOU=0;
 		g_feng_su=0;
 		g_yao_tou=0;
+		g_shang_xia_yao_tou=0;
 		g_ding_shi=0;
 		g_ding_shi_timer=0;
-		g_shu_ma_guan1=0;
-		g_shu_ma_guan2=0;
+		g_shu_ma_guan1='-';
+		g_shu_ma_guan2='-';
 		g_touch_led1=0;
 		g_touch_led2=0;
 		g_touch_led3=0;
+		g_touch_led4=0;
+		
 	}
 }
 //================================================================================
@@ -632,18 +679,19 @@ void touch_key_check()
 	static char touched=0;
 	if(TouchKeyFlag)
 	{
-		//putchar('y');
+		// putchar(TouchKeyFlag);
 		if(touched==0)
 		{
 			touched=1;
-			if(TouchKeyFlag & 0x0800L)
+			if(TouchKeyFlag & 0x0004L)
 			{
 				if(g_work_mode==0)
 				{
 					g_work_mode=1;
 					g_ding_shi=0;
 					g_feng_su=1;
-					g_yao_tou=0;	
+					g_yao_tou=0;
+					g_shang_xia_yao_tou=0;	
 					
 				}
 				else
@@ -653,13 +701,14 @@ void touch_key_check()
 					g_feng_su=0;
 					g_yao_tou=0;
 					g_xi_ping=0;
+					g_shang_xia_yao_tou=0;
 				}
 
 			}
 			if(g_work_mode==1)
 			{
 				buzzer(1);
-				if(TouchKeyFlag & 0x0400L)
+				if(TouchKeyFlag & 0x0800L)
 				{
 					op_over_time=0;
 					op_type=0;
@@ -676,18 +725,7 @@ void touch_key_check()
 						g_feng_su=1;
 					}
 				}
-				else if(TouchKeyFlag & 0x0200L)
-				{
-					if(g_yao_tou==0)
-					{
-						g_yao_tou=1;
-					}
-					else
-					{
-						g_yao_tou=0;
-					}
-				}
-				else if(TouchKeyFlag & 0x0100L)
+				else if(TouchKeyFlag & 0x0400L)
 				{
 					op_over_time=0;
 					if(g_ding_shi<9)
@@ -700,7 +738,30 @@ void touch_key_check()
 						g_ding_shi=0;
 						op_type=0;
 					}
-					g_ding_shi_timer=g_ding_shi*60;					
+					g_ding_shi_timer=g_ding_shi*60;
+					
+				}
+				else if(TouchKeyFlag & 0x0200L)
+				{
+					if(g_yao_tou==0)
+					{
+						g_yao_tou=1;
+					}
+					else
+					{
+						g_yao_tou=0;
+					}					
+				}
+				else if(TouchKeyFlag & 0x0100L)
+				{
+					if(g_shang_xia_yao_tou==0)
+					{
+						g_shang_xia_yao_tou=1;
+					}
+					else
+					{
+						g_shang_xia_yao_tou=0;
+					}	
 				}
 			}
 		}
@@ -723,12 +784,14 @@ void main()
 	EA = 1;
 	CTK_Init();	
 	
-	//init_printf();
+	// init_printf();
 	init_display();
 	init_timer0();
 	init_ext_int_17();
 	init_work();
-	
+
+	display_all();
+	Delay_ms(1000);	
 	buzzer(3);
 
 	while(1)

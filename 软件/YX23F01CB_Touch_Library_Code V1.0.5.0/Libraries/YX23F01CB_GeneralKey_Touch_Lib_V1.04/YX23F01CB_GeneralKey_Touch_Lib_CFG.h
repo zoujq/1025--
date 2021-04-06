@@ -20,7 +20,7 @@
 //      YX23F01CB-SOP24               NC   NC   NC   NC  TK15 TK14 TK13 TK12 TK11 TK10  TK9  TK7  TK3  TK2  TK1  TK0  
 //      YX23F01CB-SOP20/DIP20         NC   NC   NC   NC   NC   NC  TK15 TK14 TK13 TK12 TK11 TK10  TK9  TK7  TK3  TK2  
 //      YX23F01CB-SOP16               NC   NC   NC   NC   NC   NC   NC   NC   NC  TK15 TK14 TK13 TK12 TK11  TK7  TK2  
-#define YXTouchLib_TK_CH_MASK  TKBIN(  0 ,  0 ,  0 ,  0 ,  1 ,  1 ,  1 ,  1 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 ,  0 )
+#define YXTouchLib_TK_CH_MASK  TKBIN(  0 ,  0 ,  0 ,  0 ,  1 ,  1 ,  1 ,  1 ,  0 ,  0 ,  0 ,  0 ,  0 ,  1 ,  0 ,  0 )
 /****************************************************************************************************/
 
 
@@ -76,16 +76,16 @@
 // 设置触摸阈值时注意需要与使用的CTK通达对应		//SOP28 //S0P24 //SOP20/DIP20 //SOP16
 #define YXTouchLib_SET0_F_THRESHOLD				120	//TK0	 //TK0	 //TK2		   //TK2	
 #define YXTouchLib_SET1_F_THRESHOLD				120	//TK1	 //TK1	 //TK3		   //TK7
-#define YXTouchLib_SET2_F_THRESHOLD				120	//TK2	 //TK2	 //TK7		   //TK11
+#define YXTouchLib_SET2_F_THRESHOLD				60	//TK2	 //TK2	 //TK7		   //TK11
 #define YXTouchLib_SET3_F_THRESHOLD				120	//TK3	 //TK3	 //TK9		   //TK12
 #define YXTouchLib_SET4_F_THRESHOLD				120	//TK4	 //TK7	 //TK10		   //TK13
 #define YXTouchLib_SET5_F_THRESHOLD				120	//TK5	 //TK9	 //TK11		   //TK14	
 #define YXTouchLib_SET6_F_THRESHOLD				120	//TK6	 //TK10	 //TK12		   //TK15
 #define YXTouchLib_SET7_F_THRESHOLD				120	//TK7	 //TK11	 //TK13		   //NC
-#define YXTouchLib_SET8_F_THRESHOLD				120	//TK8	 //TK12	 //TK14		   //NC
-#define YXTouchLib_SET9_F_THRESHOLD				120	//TK9	 //TK13	 //TK15		   //NC
-#define YXTouchLib_SET10_F_THRESHOLD			120	//TK10	 //TK14	 //NC		   //NC
-#define YXTouchLib_SET11_F_THRESHOLD			120	//TK11	 //TK15	 //NC		   //NC
+#define YXTouchLib_SET8_F_THRESHOLD				60	//TK8	 //TK12	 //TK14		   //NC
+#define YXTouchLib_SET9_F_THRESHOLD				60	//TK9	 //TK13	 //TK15		   //NC
+#define YXTouchLib_SET10_F_THRESHOLD			60	//TK10	 //TK14	 //NC		   //NC
+#define YXTouchLib_SET11_F_THRESHOLD			60	//TK11	 //TK15	 //NC		   //NC
 #define YXTouchLib_SET12_F_THRESHOLD			120	//TK12	 //NC	 //NC		   //NC
 #define YXTouchLib_SET13_F_THRESHOLD			120	//TK13	 //NC	 //NC		   //NC
 #define YXTouchLib_SET14_F_THRESHOLD			120	//TK14	 //NC	 //NC		   //NC
